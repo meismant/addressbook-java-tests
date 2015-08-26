@@ -1,6 +1,9 @@
 package com.example.tests;
 
 import org.testng.annotations.Test;
+
+import com.example.fw.Folders;
+
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
