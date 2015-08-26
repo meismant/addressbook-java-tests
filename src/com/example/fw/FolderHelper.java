@@ -8,18 +8,15 @@ import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;
 import org.netbeans.jemmy.operators.JTreeOperator;
 
-public class FolderHelper {
-
-	private ApplicationManager manager;
+public class FolderHelper extends HelpersBase {
 
 	public FolderHelper(ApplicationManager applicationManager) {
-		this.manager = applicationManager;
-
+		super(applicationManager);
 	}
 
 	public Folders getFolders() {
 		List<String> list = new ArrayList<String>();
-		JTreeOperator tree = new JTreeOperator(manager.getApplication());
+		JTreeOperator tree = new JTreeOperator(mainFrame);
 		Object[] children = tree.getChildren(tree.getRoot());
 		for (Object child : children) {
 			list.add("" + child);
@@ -27,10 +24,12 @@ public class FolderHelper {
 		return new Folders(list);
 	}
 
-	public void createFolder(String folderName) {
+	public String createFolder(String folderName) {
 		manager.getMenuHelper().pushCreateFolder();
-		JDialogOperator dialog = new JDialogOperator(manager.getApplication());
-		new JTextFieldOperator(dialog).setText(folderName);
-		new JButtonOperator(dialog, "OK").push();
+		JDialogOperator dialod = new JDialogOperator(mainFrame);
+		new JTextFieldOperator(dialod).setText(folderName);
+		new JButtonOperator(dialod, "OK").push();
+		return waitMessageDialog("Warning", 3000);
 	}
+
 }

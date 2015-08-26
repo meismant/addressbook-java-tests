@@ -43,6 +43,13 @@ public class ApplicationManager {
 		return folderHelper;
 	}
 
+	public MenuHelper getMenuHelper() {
+		if (menuHelper == null) {
+			menuHelper = new MenuHelper(this);
+		}
+		return menuHelper;
+	}
+
 	public JFrameOperator getApplication() {
 		if (mainFrame == null) {
 			try {
@@ -57,10 +64,4 @@ public class ApplicationManager {
 
 	}
 
-	public MenuHelper getMenuHelper() {
-		if (menuHelper == null) {
-			menuHelper = new MenuHelper(this);
-		}
-		return menuHelper;
-	}
 }
